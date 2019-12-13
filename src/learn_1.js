@@ -2,6 +2,16 @@ import React from 'react';
 import 	Menu from './learn_2'
 import './style.css'
 import Loading from './learn_3'
+import About from './about'
+import styled from 'styled-components'
+
+const Hovertext=styled.div`
+	color:white;
+	&:hover{
+		color:#121212;
+		cursor:pointer;
+	}
+`
 
 
 class App extends React.Component{
@@ -10,23 +20,27 @@ class App extends React.Component{
 		this.state={
 			color:'red',
 			isclicked:false,
-			isloading:false
+			isloading:false,
+			hover:false
 		}
-		this.changeColor.bind(this)
+		//this.changeColor.bind(this)
+	}
+	handleHover=()=>{
+		this.setState({hover:!this.state.hover})
 	}
 	componentDidMount(){
 		setTimeout(()=>{
 			this.setState({isloading:!this.state.isloading})
 		},1500)
 	}
-	changeColor=()=>{
-		if(this.state.color==="red"){
-			 this.setState({color:"blue"})
-			}
-		else{
-			 this.setState({color:"red"})
-			}
-	}
+	//changeColor=()=>{
+	//	if(this.state.color==="red"){
+	//		 this.setState({color:"blue"})
+	//		}
+	//	else{
+	//		 this.setState({color:"red"})
+	//		}
+	//}
 	display=()=>{
 		if(this.state.isclicked){
 			this.setState({isclicked:false})	
@@ -36,6 +50,7 @@ class App extends React.Component{
 		}
 	}
 	render(){
+		var disptext=this.state.hover?"I am an engineering student":"Bonjour,I am Tapan Manu";
 		if(!this.state.isloading===true)
 		{
 			return(
@@ -46,14 +61,18 @@ class App extends React.Component{
 		{	
 		return(
 			<div class="big" >
-				<button class="a"onClick={this.changeColor}><b>T</b></button>
+				<button class="a" onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
+				<div class="button">
+				<Hovertext>T</Hovertext>
+				</div>
+				</button>
 				<button id="b"onClick={this.display}>
 				<div class="button">
-				<text>Menu</text>
+				<Hovertext>Menu</Hovertext>
 					<Menu dispmenu={this.state}/>
 				</div>	
 				</button>
-				<div class="greeting">Bonjour! I am Tapan Manu</div>
+				<div class="greeting">{disptext}</div>
 			</div>
 			);
 		}
