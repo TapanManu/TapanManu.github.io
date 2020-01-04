@@ -34,8 +34,10 @@ class App extends React.Component{
 								<div class="line2"/>
 								<div class="line3"/>
 						</Button>	
+						<div class="about-wrapper">
 						<h1>Hi I am Tapan Manu</h1>
 						<p>I am currently pursuing my Bachelors Degree in TKM</p>
+						</div>
 					</>
 				}
 				{this.state.open &&
